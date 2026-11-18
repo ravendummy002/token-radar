@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="radar-dot" aria-hidden="true"></div>
+    <div>
+      <h1>Token Launch Radar</h1>
+      <p class="sub">Which protocol with no token yet is worth farming next — and what to do about it.</p>
+    </div>
+  </div>
+  <dl class="stats" id="stats"></dl>
+</header>
+
+<section class="model" id="model-note">
+  <h2>How the value is computed</h2>
+  <p id="model-text"></p>
+  <p class="caveat">Implied value is this radar's own claim from the snapshot's figures — never a prediction that a token will launch, or when. A protocol is said to <em>record no token</em> when its DefiLlama record carries neither a CoinGecko id nor a ticker; that record is not proof it has none.</p>
+</section>
+
+<section class="filters" aria-label="Filter the board">
+  <label>Search <input id="q" type="search" placeholder="Protocol name or slug…" autocomplete="off"></label>
+  <label>Category <select id="cat"><option value="">All categories</option></select></label>
+  <label>Chain <select id="chain"><option value="">All chains</option></select></label>
+  <label>Status
+    <select id="status">
+      <option value="">All ranked</option>
+      <option value="watchlist">Watchlist only</option>
+      <option value="early">Early (below the floor)</option>
+      <option value="flagged">Name-flagged</option>
+      <option value="live">Already trading</option>
+    </select>
+  </label>
+  <label>Sort by
+    <select id="sort">
+      <option value="value">Implied value</option>
+      <option value="tvl">TVL</option>
+      <option value="growth">7-day change</option>
+      <option value="age">Age (no token)</option>
+      <option value="name">Name</option>
+    </select>
+  </label>
+  <p class="count" id="count" role="status"></p>
+</section>
+
+<main class="layout">
+  <section class="board-wrap">
+    <table class="board" id="board">
+      <thead><tr>
+        <th data-sort="rank">#</th>
+        <th data-sort="name">Protocol</th>
+        <th data-sort="tvl">TVL</th>
+        <th data-sort="growth">7d</th>
+        <th data-sort="age">Age</th>
+        <th data-sort="value">Implied value</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+  <aside class="detail" id="detail" aria-live="polite">
+    <h3>Pick a protocol</h3>
+    <p class="note">Click any row on the board to see its detail, its implied value and its farm plan.</p>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Snapshot: <span id="asof"></span> · <span id="foot-note"></span></p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
